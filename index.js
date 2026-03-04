@@ -1,9 +1,12 @@
-const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const mongoose = require("mongoose");
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
 
-// Load environment variables from .env file
+// වැදගත්: import කරද්දී .js අගට අනිවාර්යයෙන්ම එකතු කරන්න
+import userRouter from "./routes/userRouter.js";
+
+// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -28,8 +31,11 @@ app.get("/", (req, res) => {
   res.send("Backend is running and connected to MongoDB Atlas...");
 });
 
+// Routes
+app.use("/api/users", userRouter);
+
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT} 🚀`);
 });
