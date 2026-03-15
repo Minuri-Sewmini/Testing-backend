@@ -61,7 +61,7 @@ export const getAllMatches = async (req, res) => {
         const matches = await Match.find()
             .populate("item1")
             .populate("item2")
-            .sort({ createdAt: -1 }); // අලුත්ම ඒවා උඩට එන්න sort කළා
+            .sort({ createdAt: -1 });
             
         res.status(200).json(matches);
     } catch (error) {
